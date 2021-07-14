@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -18,11 +19,15 @@ class SiteController extends Controller
     {
         $categories = Category::select(['id','name'])->get();
 
-        return view('welcome', compact('categories'));
+        $title = 'Ashok Gallery';
+
+        return view('welcome', compact('categories', 'title'));
     }
 
     public function gallery(Category $category)
     {
-        return view('show', compact('category'));
+        $title = 'Ashok Gallery';
+
+        return view('show', compact('category','title'));
     }
 }
